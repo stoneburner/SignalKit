@@ -13,17 +13,22 @@ import Foundation
 /// - input: accepts input
 /// - output: sends output
 /// - inOut: bidirectional signal
-enum SignalDirection: String, Codable, Hashable, Equatable {
+public enum SignalDirection: String, Codable, Hashable, Equatable {
     case input
     case output
     case inOut
 }
 
-struct SignalConnection {
+public struct SignalConnection {
     let a: SignalType
     let b: SignalType
 
-    var isValid: Bool {
+    public init(a: SignalType, b: SignalType) {
+        self.a = a
+        self.b = b
+    }
+
+    public var isValid: Bool {
         return a.isValidConnection(to: b)
     }
 }
@@ -37,7 +42,7 @@ struct SignalConnection {
 /// - analog: analog signal
 /// - special: named special purpose signal
 /// - undefined: undefined signal
-enum SignalType: Codable, Hashable, Equatable {
+public enum SignalType: Codable, Hashable, Equatable {
     case vccPos(volt:Double)
     case vccNeg(volt:Double)
     case gnd
@@ -70,7 +75,7 @@ enum SignalType: Codable, Hashable, Equatable {
         }
     }
 
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         if let stringValue = self.stringValue {
             try container.encode("\(self.stringValueName):\(stringValue)")
@@ -79,7 +84,7 @@ enum SignalType: Codable, Hashable, Equatable {
         }
     }
 
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         let stringValue = try container.decode(String.self)
 
@@ -122,7 +127,7 @@ enum SignalType: Codable, Hashable, Equatable {
     }
 }
 
-extension SignalType {
+public extension SignalType {
 
     /// Checks if a signal connection is valid
     ///

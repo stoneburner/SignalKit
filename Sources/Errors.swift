@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum JSONDecodingError: Error, Equatable {
+public enum JSONDecodingError: Error, Equatable {
     case missingValue
     case unknownEnumName(String)
     case unknownKey(String)

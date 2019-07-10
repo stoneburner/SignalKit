@@ -33,6 +33,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+
+        let signal = SignalConnection(a: .vccPos(volt: 2.0), b: .vccPos(volt: 2.0))
+        print("\(signal.isValid)")
     }
     
     /// LoadView
