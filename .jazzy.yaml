@@ -1,0 +1,7 @@
+# SignalKit document generator jazzy settings
+
+copyright: Copyright 2019 SignalKit
+author: Alexander Kasimir
+xcodebuild_arguments: [-target, SignalKit-iOS]
+clean: true
+output: ./Documentation
